@@ -1,0 +1,135 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	height:100vh;
+	background: #f2f2f2;
+	font-family: 'Roboto', sans-serif;
+	background: linear-gradient(rgba(0, 0, 0, .3) ,rgba(0 , 0, 0, .3)), url('img/fondo-1.jpg') ;
+	background-size: cover;
+}
+
+
+.marco-size{
+	width:100vh;
+	height: 100vh;
+}
+
+.elTiempo{
+	margin-top:1rem;
+	margin-left:1rem;
+	margin-bottom:0px;
+	height: 6vh;
+	font-size: .7rem;
+}
+
+#cuadro{
+	/* height: auto; */
+    height:60vh;
+	margin-top:18vh;
+	margin-bottom: 25vh;
+	padding-top:4vh;
+	padding-bottom:4vh;
+	border-radius:10px;
+	box-shadow: 5px 5px 20px rgb(180, 177, 177);
+	background: white;
+}
+
+
+
+#title {
+	font-size: 1.5em;
+	font-weight: 500;
+	text-align: center;
+	color: #141414;
+	padding: 5px 10px;
+	margin-bottom: 0px;
+}
+
+
+
+/* Boton de nueva peticion del Joke */
+
+.boton-request {
+    display:block; 
+    margin: 0 auto; 
+	width: 35%;
+	min-height: 8vh;
+	background-color:#71DFE7;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 500;
+	cursor:grab;
+	transition: .3s ease all;
+	border-radius: 5px;
+	border: 0px;
+}
+
+.boton-request>span{
+	font-size:1rem;
+}
+
+.boton-request:hover{
+    text-shadow: 0 0 6px lightgreen;
+    border-color: lightgreen;
+}
+
+
+
+/* Cuadro de contenido del Joke visible cuando la peticion es devuelta*/
+
+ .jokeData{
+    width: 80%;
+    text-align: center;
+    border-radius: 5px;
+    margin:0 auto;
+} 
+
+ #chiste{
+	height:20vh;
+} 
+
+/* Botones o Emojis de calificacion(valoracion) del Joke */
+.buttonFace>button{
+	border:none;
+	background:none;
+	margin:0 10px 10px;
+
+}
+
+.buttonFace>button:hover{
+	font-size: 1.5rem;
+	cursor:grab;
+	overflow: hidden;
+}
+
+/* Emoji de cara contenta al costat del titulo */
+img{
+	width: 20px;
+	height:20px;
+}
+
+
+/* @media (height > 400px) {
+    body { line-height: 1.4; }
+
+	#chiste{
+		min-height:20vh;
+	} 
+} */
+
+/* @media (height < 400px) {
+    body { line-height: 1.4; }
+
+	#cuadro > #chiste{
+		font-size:.6rem;
+
+	} 
+} */
+
+
