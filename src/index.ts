@@ -3,7 +3,7 @@ const API_URL_JOKE_0: string = "https://icanhazdadjoke.com/";
 const API_URL_JOKE_1: string = "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random";
 
 
-const API_OPCIONES_PETICION_JOKE_0 = {
+const API_CONF_REQUEST_TEMPLATE = {
   headers: {
     Accept: "application/json",
   },
@@ -23,6 +23,7 @@ const data_confWeather = {
   id: "6356131",
   appid: "3f12566373dfcec257a5ff896a50556e",
   lang: "es",
+  units:"metric"
 };
 
 
@@ -34,12 +35,6 @@ const apiUrlWeatherFinal = API_URL_WEATHER.concat(paramsURL);
 
 //Bloqueamos los parametros de configuracion para que no sea modificable por consola.
 Object.freeze(data_confWeather);
-
-const API_OPCIONES_PETICION_WEATHER = {
-  headers: {
-    Accept: "application/json",
-  },
-};
 
 /**Interface de datos para cada joke */
 interface UnitJoke {
@@ -109,6 +104,53 @@ const seleccionJoke = (option: number) => {
   }
 };
 
+const iconItemWeather = (id:number):string =>{
+  let valueId:number=0;
+  let dataImg:string;
+
+   if(id >199 && id < 299) valueId = 1;
+  else if(id >299 && id < 399) valueId = 2;
+      else if (id >499 && id < 505) valueId = 3;
+          else if (id == 511) valueId = 4;
+              else if (id >519 && id < 532) valueId = 5;
+                else if (id >599 && id < 700) valueId = 6;
+                    else if (id >700 && id < 800) valueId = 7;
+                        else if (id == 800) valueId = 8;
+                            else if (id > 800) valueId = 9;
+
+  switch (valueId){
+    case 1:
+      dataImg = 'thunder.svg';
+      break;
+    case 2:
+      dataImg = 'rainy-4.svg';
+      break;
+    case 3:
+      dataImg = 'rainy-3.svg';
+      break;
+    case 4:
+      dataImg = 'snowy-5.svg';
+      break;
+    case 5:
+      dataImg = 'rainy-6.svg'
+      break;
+    case 6:
+      dataImg = 'snowy-6.svg'
+      break;
+    case 8:
+      dataImg = 'day.svg';
+      break;
+    case 9:
+      dataImg = 'cloudy.svg';
+      break;
+    default:
+      dataImg = 'day.svg'; 
+  }
+  return dataImg;
+}                     
+
+
+
 /******************************JOKE **********************************/
  if (button) {
   button.addEventListener("click", () => {
@@ -118,7 +160,7 @@ const seleccionJoke = (option: number) => {
 
 const jokeObtain_0 = () => {
   if (button && HTMLResponseJoke && buttonFace) {
-    const myFirstPromise_A = fetch(API_URL_JOKE_0, API_OPCIONES_PETICION_JOKE_0)
+    const myFirstPromise_A = fetch(API_URL_JOKE_0, API_CONF_REQUEST_TEMPLATE)
       .then((response) => response.json())
       .then((data) => {
         if (data.status == 200) {
@@ -166,21 +208,36 @@ const jokeObtain_1 = () => {
 
 //Opto por indicarle a la promesa el formato de los datos que me devuelcva auqnue en este caso por defecto esta API devuelve los datos en formato de json, por lo que realmente no seria necesario.
 /******************************WEATHER **********************************/
+window.addEventListener('load',()=>{
 if (HTMLResponseWeather) {
   const myFirstPromise_B = fetch(
     apiUrlWeatherFinal,
-    API_OPCIONES_PETICION_WEATHER
+    API_CONF_REQUEST_TEMPLATE
   )
     .then((response) => response.json())
     .then((data) => {
       if (data.cod == 200) {
-        let cleanElement = HTMLResponseWeather.querySelector("p:first-child");
-        if (cleanElement) cleanElement.remove();
+        let cleanElement = HTMLResponseWeather.querySelectorAll("p");
+        if (cleanElement) cleanElement.forEach(e => e.remove());
 
-        let newWeather = document.createElement("p");
-        newWeather.classList.add("dataWeather");
-        newWeather.innerHTML = data.weather[0].description;
-        HTMLResponseWeather.append(newWeather);
+        let newWeatherTemp = document.createElement("p");
+        newWeatherTemp.classList.add("dataWeather-temp");
+        newWeatherTemp.innerHTML = `${Math.round(+data.main.temp)} °C`;
+
+        let newWeatherImg = document.createElement("img");
+        newWeatherImg.classList.add("dataWeather-img");
+        newWeatherImg.src = `../img/animated/${iconItemWeather(data.weather[0].id)}`;
+
+
+        // newWeatherImg.innerHTML = data.weather[0].description;  
+
+       /* let newWeatherCity = document.createElement("p");
+        newWeatherCity.classList.add("dataWeather-city");
+        newWeatherCity.innerHTML = data.name;   */
+
+        HTMLResponseWeather.append(newWeatherImg);
+        HTMLResponseWeather.append(newWeatherTemp);
+       // HTMLResponseWeather.append(newWeatherCity);
 
         weatherGeneral = data.weather;
       }
@@ -190,3 +247,4 @@ if (HTMLResponseWeather) {
     console.log("Error en la promesa: ", error)
   );
 }
+});

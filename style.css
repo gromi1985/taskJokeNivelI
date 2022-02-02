@@ -5,47 +5,61 @@
 }
 
 body {
-	width: 100%;
-	height:100vh;
+	 width: 100%; 
 	background: #f2f2f2;
 	font-family: 'Roboto', sans-serif;
-	background: linear-gradient(rgba(0, 0, 0, .3) ,rgba(0 , 0, 0, .3)), url('img/fondo-1.jpg') ;
-	background-size: cover;
 }
 
 
-.marco-size{
-	width:100vh;
-	height: 100vh;
+#marco-size{
+	width:96%;
+	height: 96vh;
+	margin:2vh 2%;
+	background-image:  url('img/blob.png') ;
+	background-repeat:no-repeat;
+	background-size:100% 100%; 
 }
 
-.elTiempo{
-	margin-top:1rem;
-	margin-left:1rem;
+/* svg{
+	width:96%;
+	height: 96vh;
+} */
+#elTiempo{
+	display:flex;
 	margin-bottom:0px;
 	height: 6vh;
 	font-size: .7rem;
+	align-items:center;
+	flex-wrap:nowrap;
+	width: 100px;
 }
 
+	#elTiempo>p,
+    #elTiempo>img{
+	width: 3rem;
+	height:3rem;
+	margin-bottom: 0px;
+	font-size: 1.2rem;
+	}
+
+
 #cuadro{
-	/* height: auto; */
-    height:60vh;
-	margin-top:18vh;
-	margin-bottom: 25vh;
+    height:70vh;
+	margin-top:10vh;
+	margin-bottom: 10vh;
 	padding-top:4vh;
 	padding-bottom:4vh;
 	border-radius:10px;
-	box-shadow: 5px 5px 20px rgb(180, 177, 177);
-	background: white;
+	background: transparent;
 }
 
 
 
 #title {
-	font-size: 1.5em;
-	font-weight: 500;
+	font-size: 1.2rem;
+	font-weight:bold;
+	color: white;
 	text-align: center;
-	color: #141414;
 	padding: 5px 10px;
 	margin-bottom: 0px;
 }
@@ -57,21 +71,25 @@ body {
 .boton-request {
     display:block; 
     margin: 0 auto; 
-	width: 35%;
-	min-height: 8vh;
-	background-color:#71DFE7;
+	width: 180px;
+	min-height: 6vh;
+	background-color:#FFE162;
 	color: white;
 	font-family: 'Roboto', sans-serif;
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	font-weight: 500;
 	cursor:grab;
 	transition: .3s ease all;
-	border-radius: 5px;
-	border: 0px;
+	border-radius: 25px;
+	border: 2px solid black;
+	box-shadow: 2px 2px #FFE162;
+	padding-left:20px;
+	padding-right: 20px;
 }
 
 .boton-request>span{
 	font-size:1rem;
+	color:black;
 }
 
 .boton-request:hover{
@@ -88,51 +106,50 @@ body {
     text-align: center;
     border-radius: 5px;
     margin:0 auto;
+	color:white;
+	font-weight: 300;
 } 
 
  #chiste{
 	height:20vh;
+	font-size:2rem;
 } 
 
 /* Botones o Emojis de calificacion(valoracion) del Joke */
+.buttonFace{
+	height: 4rem;
+	width: 200px;
+}
 .buttonFace>button{
 	border:none;
 	background:none;
 	margin:0 10px 10px;
-
+	font-size:2.0rem;
 }
 
 .buttonFace>button:hover{
-	font-size: 1.5rem;
+	font-size: 2.5rem;
 	cursor:grab;
 	overflow: hidden;
 }
 
-/* Emoji de cara contenta al costat del titulo */
-img{
-	width: 20px;
-	height:20px;
+.dataWeather-img{
+	border-right: black solid 2px;
 }
 
-.dataWeather{
-	font-size:1rem;
-}
-
-/* @media (height > 400px) {
-    body { line-height: 1.4; }
-
+@media (max-width: 729px) {
 	#chiste{
-		min-height:20vh;
-	} 
-} */
+		width: 350px;
+		font-size:1rem;
+	}
+	.buttonFace>button{
+		font-size:1.5rem;
+	}
+  }
 
-/* @media (height < 400px) {
-    body { line-height: 1.4; }
-
-	#cuadro > #chiste{
-		font-size:.6rem;
-
-	} 
-} */
-
-
+@media(min-width:730px){
+	#chiste{
+		font-size:1.2rem;
+		width:380px;
+	}
+}
